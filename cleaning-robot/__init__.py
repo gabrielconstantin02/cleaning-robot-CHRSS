@@ -2,6 +2,9 @@ import os
 
 from flask import Flask
 from . import db
+from . import auth
+from . import environment
+from . import cleaning
 
 
 def create_app(test_config=None):
@@ -28,12 +31,13 @@ def create_app(test_config=None):
 
     db.init_app(app)
 
-    # a simple page that says hello
+   # a simple page that says hello
     @app.route('/hello')
     def hello():
         return 'Hello, World!'
 
-    from . import auth
     app.register_blueprint(auth.bp)
+    app.register_blueprint(environment.bp)
+    app.register_blueprint(cleaning.bp)
 
     return app
