@@ -16,7 +16,6 @@ def set_resource_level():
     if not resource_level:
         return jsonify({'status': 'Resource level is required.'}), 403
 
-    print(resource_level)
     db = get_db()
     db.execute(
         'INSERT INTO resource_level (value)'
@@ -31,7 +30,7 @@ def set_resource_level():
         ' ORDER BY timestamp DESC'
     ).fetchone()
     return jsonify({
-        'status': 'Resource level succesfully recorded',
+        'status': 'Resource level successfully recorded',
         'data': {
             'id': check['id'],
             'timestamp': check['timestamp'],
@@ -48,7 +47,6 @@ def set_battery_level():
     if not resource_level:
         return jsonify({'status': 'Battery level is required.'}), 403
 
-    print(resource_level)
     db = get_db()
     db.execute(
         'INSERT INTO battery_level (value)'
@@ -63,7 +61,7 @@ def set_battery_level():
         ' ORDER BY timestamp DESC'
     ).fetchone()
     return jsonify({
-        'status': 'Battery level succesfully recorded',
+        'status': 'Battery level successfully recorded',
         'data': {
             'id': check['id'],
             'timestamp': check['timestamp'],
@@ -80,7 +78,6 @@ def set_bin_level():
     if not resource_level:
         return jsonify({'status': 'Bin level is required.'}), 403
 
-    print(resource_level)
     db = get_db()
     db.execute(
         'INSERT INTO bin_level (value)'
@@ -95,7 +92,7 @@ def set_bin_level():
         ' ORDER BY timestamp DESC'
     ).fetchone()
     return jsonify({
-        'status': 'Bin level succesfully recorded',
+        'status': 'Bin level successfully recorded',
         'data': {
             'id': check['id'],
             'timestamp': check['timestamp'],
