@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS vacuum_settings;
 DROP TABLE IF EXISTS mop_settings;
 DROP TABLE IF EXISTS cleaning_schedule;
 DROP TABLE IF EXISTS cleaning_history;
+DROP TABLE IF EXISTS cleaning;
 DROP TABLE IF EXISTS resource_level;
 DROP TABLE IF EXISTS battery_level;
 DROP TABLE IF EXISTS bin_level;
@@ -25,7 +26,7 @@ CREATE TABLE post (
 
 CREATE TABLE cleaning (
   id INTEGER PRIMARY KEY AUTOINCREMENT ,
-  type BINARY NOT NULL, -- 0 for vacuuming, 1 for mopping
+  type INT NOT NULL, -- 0 for vacuuming, 1 for mopping
   settings_v INTEGER NOT NULL,
   settings_m INTEGER NOT NULL,
   timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -50,7 +51,7 @@ CREATE TABLE mop_settings (
 
 -- cleaning schedule
 CREATE TABLE cleaning_schedule (
-  type BINARY NOT NULL, -- 0 for vacuuming, 1 for mopping
+  type INT NOT NULL, -- 0 for vacuuming, 1 for mopping
   date TIMESTAMP NOT NULL,
   timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (type) REFERENCES cleaning(type),
@@ -62,7 +63,7 @@ CREATE TABLE cleaning_history (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   elapsed_time REAL NOT NULL,
-  type BINARY NOT NULL, -- 0 for vacuuming, 1 for mopping
+  type INT NOT NULL, -- 0 for vacuuming, 1 for mopping
   date TIMESTAMP NOT NULL,
   FOREIGN KEY (type) REFERENCES cleaning(type)
 );
