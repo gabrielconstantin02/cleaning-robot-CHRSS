@@ -38,11 +38,15 @@ def create_app(test_config=None):
     def hello():
         return 'Hello, World!'
 
+    from . import auth
+    from . import air_quality
+
     app.register_blueprint(auth.bp)
     app.register_blueprint(environment.bp)
     app.register_blueprint(cleaning.bp)
     app.register_blueprint(vacuum_settings.bp)
     app.register_blueprint(mop_settings.bp)
     app.register_blueprint(cleaning_schedule.bp)
+    app.register_blueprint(air_quality.bp)
 
     return app
