@@ -34,6 +34,9 @@ def create_app(test_config=None):
         return 'Hello, World!'
 
     from . import auth
+    from . import air_quality
+
     app.register_blueprint(auth.bp)
+    app.register_blueprint(air_quality.bp)
 
     return app
