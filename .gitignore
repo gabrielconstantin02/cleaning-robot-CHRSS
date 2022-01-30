@@ -1,0 +1,4 @@
+/venv/*
+/env/*
+cleaning-robot/__pycache__/*
+
