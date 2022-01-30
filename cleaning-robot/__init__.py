@@ -8,6 +8,8 @@ from . import cleaning
 from . import vacuum_settings
 from . import mop_settings
 from . import cleaning_schedule
+from . import air_quality
+from . import automatic_empty
 
 def create_app(test_config=None):
 
@@ -38,8 +40,6 @@ def create_app(test_config=None):
     def hello():
         return 'Hello, World!'
 
-    from . import auth
-    from . import air_quality
 
     app.register_blueprint(auth.bp)
     app.register_blueprint(environment.bp)
@@ -48,5 +48,6 @@ def create_app(test_config=None):
     app.register_blueprint(mop_settings.bp)
     app.register_blueprint(cleaning_schedule.bp)
     app.register_blueprint(air_quality.bp)
+    app.register_blueprint(automatic_empty.bp)
 
     return app
