@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
+<<<<<<< HEAD
     <file url="file://$PROJECT_DIR$/cleaning-robot/schema.sql" dialect="SQLite" />
+=======
+    <file url="file://$PROJECT_DIR$/cleaning-robot/cleaning.py" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/cleaning-robot/cleaning_history.py" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/cleaning-robot/cleaning_schedule.py" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/cleaning-robot/environment.py" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/cleaning-robot/schema.sql" dialect="SQLite" />
+    <file url="PROJECT" dialect="SQLite" />
+>>>>>>> mqtt
   </component>
 </project>

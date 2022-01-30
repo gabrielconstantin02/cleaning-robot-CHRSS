@@ -2,7 +2,7 @@ from flask import (
     Blueprint, request, jsonify
 )
 
-from .db import get_db
+from db import get_db
 
 bp = Blueprint('cleaning_history', __name__)
 

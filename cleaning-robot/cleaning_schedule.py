@@ -2,7 +2,7 @@ from flask import (
     Blueprint, request, jsonify
 )
 
-from .db import get_db
+from db import get_db
 
 bp = Blueprint('cleaning_schedule', __name__)
 
@@ -50,9 +50,9 @@ def get_cleaning_schedule():
         (type, date)
     ).fetchone()
     return jsonify({
-    'data': {
-        'timestamp': result['timestamp'],
-        'type': result['type'],
-        'date': result['date'],
-    }
+        'data': {
+            'timestamp': result['timestamp'],
+            'type': result['type'],
+            'date': result['date'],
+        }
 }), 200

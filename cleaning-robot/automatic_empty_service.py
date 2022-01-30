@@ -2,7 +2,7 @@ from flask import (
     Blueprint, request, jsonify
 )
 
-from .db import get_db
+from db import get_db
 
 
 def get_bin_level():

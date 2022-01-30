@@ -2,8 +2,8 @@ from flask import (
     Blueprint, request, jsonify
 )
 
-from .db import get_db
-from .air_service import *
+from air_service import *
+from db import get_db
 
 bp = Blueprint('vacuum_settings', __name__)
 

@@ -2,8 +2,8 @@ from flask import (
     Blueprint, request, jsonify
 )
 
-from .auth import login_required
-from .air_service import *
+from auth import login_required
+from air_service import *
 
 bp = Blueprint('air_api', __name__, url_prefix='/air')
 

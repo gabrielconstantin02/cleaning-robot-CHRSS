@@ -1,5 +1,5 @@
-from .automatic_empty_service import *
-from .environment import set_bin_level
+from automatic_empty_service import *
+from environment import set_bin_level
 
 bp = Blueprint('automatic_empty', __name__, url_prefix='/bin')
 
