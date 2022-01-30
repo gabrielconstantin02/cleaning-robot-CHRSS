@@ -13,13 +13,17 @@ def set_air(air_quality):
     db.commit()
 
 
-def set_air_realtime():
+def get_air_realtime():
     api_key = "5886b8db8457d6883ef994cfd77a4779"
     api_url = "http://api.openweathermap.org/data/2.5/air_pollution?lat=10&lon=10&appid=" + api_key
     response = requests.get(api_url)
     air_quality = response.json()["list"][0]["components"]["pm10"]
     air_quality = float("{:.2f}".format(air_quality))
-    set_air(air_quality)
+    return air_quality
+
+
+def set_air_realtime():
+    set_air(get_air_realtime())
 
 
 def get_air():
