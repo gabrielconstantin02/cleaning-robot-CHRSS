@@ -71,12 +71,14 @@ def set_battery_level():
 
 
 @bp.route('/bin_level', methods=['POST'])
-def set_bin_level():
-    resource_level = request.form['bin_level']
-    error = None
+def set_bin_level(automatic_empty=False):
+    if not automatic_empty:
+        resource_level = request.form['bin_level']
+        if not resource_level:
+            return jsonify({'status': 'Bin level is required.'}), 403
 
-    if not resource_level:
-        return jsonify({'status': 'Bin level is required.'}), 403
+    if automatic_empty:
+        resource_level = 0
 
     db = get_db()
     db.execute(
@@ -85,17 +87,17 @@ def set_bin_level():
         (resource_level,)
     )
     db.commit()
-
-    check = get_db().execute(
-        'SELECT id, timestamp, value'
-        ' FROM bin_level'
-        ' ORDER BY timestamp DESC'
-    ).fetchone()
-    return jsonify({
-        'status': 'Bin level successfully recorded',
-        'data': {
-            'id': check['id'],
-            'timestamp': check['timestamp'],
-            'value': check['value']
-         }
-         }), 200
+    if not automatic_empty:
+        check = get_db().execute(
+            'SELECT id, timestamp, value'
+            ' FROM bin_level'
+            ' ORDER BY timestamp DESC'
+        ).fetchone()
+        return jsonify({
+            'status': 'Bin level successfully recorded',
+            'data': {
+                'id': check['id'],
+                'timestamp': check['timestamp'],
+                'value': check['value']
+             }
+             }), 200
