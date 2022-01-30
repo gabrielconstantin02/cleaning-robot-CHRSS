@@ -3,6 +3,7 @@ from flask import (
 )
 
 from .db import get_db
+from .air_service import *
 
 bp = Blueprint('vacuum_settings', __name__)
 
@@ -12,11 +13,30 @@ def set_vacuum_settings():
     power = request.form['power']
     error = None
 
-    if not frequency:
-        return jsonify({'status': 'Frequency level is required.'}), 403
+    air = get_air()
 
-    if not power:
-        return jsonify({'status': 'Power level is required.'}), 403
+    if not frequency and not power:
+        if air is None:
+            set_air_realtime()
+            return jsonify({
+                'status': 'No air quality record found; trying api...'
+            }), 404
+        frequency = air['value'] // 50 + 1
+        power = frequency * 100
+    elif not frequency:
+        if air is None:
+            set_air_realtime()
+            return jsonify({
+                'status': 'No air quality record found; trying api...'
+            }), 404
+        frequency = air['value'] // 50 + 1
+    elif not power:
+        if air is None:
+            set_air_realtime()
+            return jsonify({
+                'status': 'No air quality record found; trying api...'
+            }), 404
+        power = (air['value'] // 50 + 1) * 100
 
     db = get_db()
     db.execute(

@@ -3,6 +3,7 @@ from flask import (
 )
 
 from .db import get_db
+from .air_service import *
 
 bp = Blueprint('mop_settings', __name__)
 
@@ -11,8 +12,15 @@ def set_vacuum_settings():
     frequency = request.form['frequency']
     error = None
 
+    air = get_air()
+
     if not frequency:
-        return jsonify({'status': 'Frequency level is required.'}), 403
+        if air is None:
+            set_air_realtime()
+            return jsonify({
+                'status': 'No air quality record found; trying api...'
+            }), 404
+        frequency = air['value'] // 50 + 1
 
     db = get_db()
     db.execute(
