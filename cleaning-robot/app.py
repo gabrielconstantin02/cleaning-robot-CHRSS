@@ -7,14 +7,14 @@ import json
 import time
 import eventlet
 
-from . import db
-from . import auth
-from . import environment
-from . import cleaning
-from . import vacuum_settings
-from . import mop_settings
-from . import cleaning_schedule
-from . import status
+import db
+import auth
+import environment
+import cleaning
+import vacuum_settings
+import mop_settings
+import cleaning_schedule
+import status
 
 app = None
 mqtt = None
@@ -105,7 +105,7 @@ def background_thread():
 def run_socketio_app():
     create_app()
     create_mqtt_app()
-    socketio.run(app, host='localhost', port=5001, use_reloader=False, debug=True)
+    socketio.run(app, host='localhost', port=5000, use_reloader=False, debug=True)
 
     @socketio.on('publish')
     def handle_publish(json_str):

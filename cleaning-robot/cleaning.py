@@ -2,8 +2,8 @@ from flask import (
     Blueprint, request, jsonify
 )
 
-from .auth import login_required
-from .db import get_db
+from auth import login_required
+from db import get_db
 
 bp = Blueprint('cleaning', __name__)
 

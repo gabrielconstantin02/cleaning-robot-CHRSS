@@ -3,7 +3,7 @@ from flask import (
     Blueprint, request, jsonify
 )
 
-from .db import get_db
+from db import get_db
 
 bp = Blueprint('environment', __name__)
 
