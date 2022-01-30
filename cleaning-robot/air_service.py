@@ -15,7 +15,7 @@ def set_air(air_quality):
 
 def set_air_realtime():
     api_key = "5886b8db8457d6883ef994cfd77a4779"
-    api_url = "http://api.openweathermap.org/data/2.5/air_pollution?lat=10&lon=10&appid=" + api_key
+    api_url = "http://api.openweathermap.org/data/2.5/air_pollution?lat=44&lon=26&appid=" + api_key
     response = requests.get(api_url)
     air_quality = response.json()["list"][0]["components"]["pm10"]
     air_quality = float("{:.2f}".format(air_quality))
