@@ -41,6 +41,7 @@ def convert_map_from_sql(cursor, size):
 def generate_new_mapping(map_size):
     # This should be an algorithm for the robot to go around and generate a mapping
     random.seed(69)
+    station_pos = None
     obstacle_numbers = 2
     obstacle_size = (2, 2)
     wall_size = 2
@@ -59,4 +60,11 @@ def generate_new_mapping(map_size):
             for y in range(obstacle_size[1]):
                 mapping[obstacle_x + x][obstacle_y + y] = 1
 
-    return mapping
+    for i in range(map_size[0]):
+        if station_pos is None:
+            for j in range(map_size[1]):
+                if mapping[i][j] != 1:
+                    station_pos = (i, j)
+                    mapping[i][j] = 2
+                    break
+    return mapping, station_pos

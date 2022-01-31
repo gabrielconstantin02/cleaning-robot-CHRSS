@@ -103,6 +103,8 @@ CREATE TABLE air_quality (
 CREATE TABLE map (
     map_id INTEGER PRIMARY KEY AUTOINCREMENT,
     map_name varchar(24) NOT NULL UNIQUE,
+    map_base_row smallint NOT NULL,
+    map_base_col smallint NOT NULL,
     map_size_row INTEGER NOT NULL,
     map_size_col INTEGER NOT NULL
 );

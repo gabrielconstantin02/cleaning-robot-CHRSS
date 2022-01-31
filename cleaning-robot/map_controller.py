@@ -31,13 +31,13 @@ def set_map_api():
 
     # mocking the map generation
     size = (32, 32)
-    new_mapping = generate_new_mapping(size)
+    new_mapping, station_pos = generate_new_mapping(size)
     # creating the new mapping:
     map_connection = db.cursor()
     map_connection.execute(
-        'INSERT INTO map (map_name, map_size_row, map_size_col)'
-        ' VALUES (?, ?, ?)',
-        (map_name, size[0], size[1])
+        'INSERT INTO map (map_name, map_base_row, map_base_col, map_size_row, map_size_col)'
+        ' VALUES (?, ?, ?, ?, ?)',
+        (map_name, station_pos[0], station_pos[1], size[0], size[1])
     )
     map_id = map_connection.lastrowid
 
@@ -45,7 +45,7 @@ def set_map_api():
         for y_index, value in enumerate(line):
             database_script += f'INSERT INTO map_cells (map_id, row, col, value) VALUES ("{map_id}", {x_index}, {y_index}, {value});\n'
 
-    print(database_script)
+    # print(database_script)
     get_db().executescript(database_script)
 
     return jsonify({
