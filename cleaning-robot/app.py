@@ -33,7 +33,7 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
-        DATABASE=os.path.join(app.instance_path, 'cleaning-robot.sqlite'),
+        DATABASE='cleaning-robot.sqlite',
     )
 
     if test_config is None:
@@ -144,7 +144,6 @@ def run_socketio_app():
     def handle_logging(client, userdata, level, buf):
         print(level, buf)
 
-
+# If we run with python - this would imply to initialize the database manually
 if __name__ == '__main__':
     run_socketio_app()
-

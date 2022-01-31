@@ -3,6 +3,7 @@ __pycache__/
 
 *.pyc
 
+cleaning-robot.sqlite
 instance/*
 /cleaning-robot/instance/*
 

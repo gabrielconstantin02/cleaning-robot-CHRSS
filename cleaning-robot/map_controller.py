@@ -27,7 +27,7 @@ def set_map_api():
     if check is not None:
         return jsonify({
             'status': 'The mapping already exists'
-        }), 404
+        }), 405
 
     # mocking the map generation
     size = (32, 32)
