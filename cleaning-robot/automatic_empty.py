@@ -1,10 +1,12 @@
 from automatic_empty_service import *
 from environment import set_bin_level
+from auth import login_required
 
 bp = Blueprint('automatic_empty', __name__, url_prefix='/bin')
 
 
 @bp.route('/', methods=['GET'])
+@login_required
 def automatic_empty():
 
     check = get_bin_level()

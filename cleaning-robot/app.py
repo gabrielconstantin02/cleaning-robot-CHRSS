@@ -17,6 +17,7 @@ import cleaning_schedule
 import status
 import air_quality
 import automatic_empty
+import map
 
 app = None
 mqtt = None
@@ -25,8 +26,8 @@ thread = None
 
 eventlet.monkey_patch()
 
-def create_app(test_config=None):
 
+def create_app(test_config=None):
     # create and configure the app
     global app
     app = Flask(__name__, instance_relative_config=True)
@@ -68,6 +69,7 @@ def create_app(test_config=None):
     app.register_blueprint(cleaning_schedule.bp)
     app.register_blueprint(air_quality.bp)
     app.register_blueprint(automatic_empty.bp)
+    app.register_blueprint(map.bp)
 
     return app
 

@@ -49,6 +49,7 @@ def set_cleaning():
     }), 200
 
 @bp.route('/cleaning', methods=['GET'])
+@login_required
 def get_cleaning():
     id = request.form['id']
     result = get_db().execute(

@@ -4,10 +4,12 @@ from flask import (
 
 from air_service import *
 from db import get_db
+from auth import login_required
 
 bp = Blueprint('mop_settings', __name__)
 
 @bp.route('/mop_settings', methods=['POST'])
+@login_required
 def set_vacuum_settings():
     frequency = request.form['frequency']
     error = None
@@ -45,6 +47,7 @@ def set_vacuum_settings():
          }), 200
 
 @bp.route('/mop_settings', methods=['GET'])
+@login_required
 def get_mop_settings():
     id = request.form['id']
     result = get_db().execute(

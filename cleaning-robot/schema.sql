@@ -9,6 +9,7 @@ DROP TABLE IF EXISTS resource_level;
 DROP TABLE IF EXISTS battery_level;
 DROP TABLE IF EXISTS bin_level;
 DROP TABLE IF EXISTS air_quality;
+DROP TABLE IF EXISTS map;
 
 CREATE TABLE user (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -95,4 +96,13 @@ CREATE TABLE air_quality (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     value REAL NOT NULL
+);
+
+-- map data
+CREATE TABLE map (
+    map_name varchar(24) NOT NULL,
+    row smallint NOT NULL,
+    col smallint NOT NULL,
+    value smallint NULL,
+    CONSTRAINT [PK_map] PRIMARY KEY ([map_name] ASC, [row] ASC, [col] ASC)
 );
