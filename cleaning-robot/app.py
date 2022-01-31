@@ -17,7 +17,7 @@ import cleaning_schedule
 import status
 import air_quality
 import automatic_empty
-import map
+import map_controller
 
 app = None
 mqtt = None
@@ -69,7 +69,8 @@ def create_app(test_config=None):
     app.register_blueprint(cleaning_schedule.bp)
     app.register_blueprint(air_quality.bp)
     app.register_blueprint(automatic_empty.bp)
-    app.register_blueprint(map.bp)
+    app.register_blueprint(map_controller.bp)
+    app.register_blueprint(map_controller.bp_cells)
 
     return app
 
@@ -142,7 +143,6 @@ def run_socketio_app():
     @mqtt.on_log()
     def handle_logging(client, userdata, level, buf):
         print(level, buf)
-
 
 
 if __name__ == '__main__':
