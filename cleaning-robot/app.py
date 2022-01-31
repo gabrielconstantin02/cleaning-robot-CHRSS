@@ -18,6 +18,7 @@ import status
 import air_quality
 import automatic_empty
 import map_controller
+import led
 
 app = None
 mqtt = None
@@ -71,6 +72,7 @@ def create_app(test_config=None):
     app.register_blueprint(automatic_empty.bp)
     app.register_blueprint(map_controller.bp)
     app.register_blueprint(map_controller.bp_cells)
+    app.register_blueprint(led.bp)
 
     return app
 
