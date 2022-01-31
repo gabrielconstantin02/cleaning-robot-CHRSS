@@ -1,4 +1,5 @@
 from db import get_db
+from map_service import get_map
 
 def get_status():
     cleaning = get_db().execute(
@@ -13,5 +14,6 @@ def get_status():
     return {
         'data': {
             "cleaning": "vacuuming" if cleaning['type'] == 0 else "mopping"
+            # "map": get_map()
         }
     }

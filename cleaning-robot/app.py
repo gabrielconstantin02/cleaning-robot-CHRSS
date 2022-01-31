@@ -17,6 +17,7 @@ import cleaning_schedule
 import status
 import air_quality
 import automatic_empty
+import map_controller
 
 app = None
 mqtt = None
@@ -25,14 +26,14 @@ thread = None
 
 eventlet.monkey_patch()
 
-def create_app(test_config=None):
 
+def create_app(test_config=None):
     # create and configure the app
     global app
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
-        DATABASE=os.path.join(app.instance_path, 'cleaning-robot.sqlite'),
+        DATABASE='cleaning-robot.sqlite',
     )
 
     if test_config is None:
@@ -68,6 +69,8 @@ def create_app(test_config=None):
     app.register_blueprint(cleaning_schedule.bp)
     app.register_blueprint(air_quality.bp)
     app.register_blueprint(automatic_empty.bp)
+    app.register_blueprint(map_controller.bp)
+    app.register_blueprint(map_controller.bp_cells)
 
     return app
 
@@ -141,8 +144,6 @@ def run_socketio_app():
     def handle_logging(client, userdata, level, buf):
         print(level, buf)
 
-
-
+# If we run with python - this would imply to initialize the database manually
 if __name__ == '__main__':
     run_socketio_app()
-

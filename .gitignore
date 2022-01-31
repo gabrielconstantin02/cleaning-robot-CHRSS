@@ -3,11 +3,15 @@ __pycache__/
 
 *.pyc
 
+cleaning-robot.sqlite
 instance/*
+/cleaning-robot/instance/*
 
 .pytest_cache/
 .coverage
 htmlcov/
+
+.idea/
 
 dist/
 build/

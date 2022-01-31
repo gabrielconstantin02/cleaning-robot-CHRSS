@@ -3,10 +3,12 @@ from flask import (
 )
 
 from db import get_db
+from auth import login_required
 
 bp = Blueprint('cleaning_history', __name__)
 
 @bp.route('/cleaning_history', methods=['GET'])
+@login_required
 def get_cleaning_history():
     type = request.form['type']
     date = request.form['date']

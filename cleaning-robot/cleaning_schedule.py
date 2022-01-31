@@ -3,10 +3,12 @@ from flask import (
 )
 
 from db import get_db
+from auth import login_required
 
 bp = Blueprint('cleaning_schedule', __name__)
 
 @bp.route('/cleaning_schedule', methods=['POST'])
+@login_required
 def set_cleaning_schedule():
     type = request.form['type']
     date = request.form['date']
@@ -40,6 +42,7 @@ def set_cleaning_schedule():
          }), 200
 
 @bp.route('/cleaning_schedule', methods=['GET'])
+@login_required
 def get_cleaning_schedule():
     type = request.form['type']
     date = request.form['date']
