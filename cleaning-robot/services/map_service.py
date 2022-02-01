@@ -20,7 +20,7 @@ def get_map():
     mapping = convert_map_from_sql(map_cells_db, size)
 
     return {
-        'status': 'Created new mapping',
+        'status': 'Got the map',
         'data': {
             'id': map_db['map_name'],
             'map_base_row': base[0],
