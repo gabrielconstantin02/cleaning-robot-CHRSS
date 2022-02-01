@@ -1,5 +1,17 @@
 # Project Software Engineering course
-cleaning-robot-CHRSS -> vacuuming & mopping smart robot  
+
+## About
+
+This is a backend app for a cleaning robot.
+The app was created to improve your life style and save you time.
+
+### Built with
+
+<li><a href="https://www.python.org/"> Python </a></li>
+<li><a href="https://flask.palletsprojects.com/en/2.0.x/"> Flask </a></li>
+<li> <a href="https://docs.python-requests.org/en/latest/"> Requests</a></li>
+<li><a href="https://docs.pytest.org/en/6.2.x/"> Pytest </a> (for automation testing)</li>
+<li><a href="https://openweathermap.org/api">Open Weather App</a> (for air pollution stats)</li>
 
 ## How to run the project  
 
@@ -47,9 +59,25 @@ Next we need to use mosquitto_sub to connect to the mosquitto broker on the topi
    foo@project:~$ mosquitto_sub -v -t "robot/status"
    ```
 
+## Automation tests
+
+#### Unit tests:
+
+To run the unit tests open a terminal, cd into the project folder and run: ```python3 -m pytest cleaning-robot/unit_test/*```
+
+#### Integration tests:
+
+To run the integration tests open a terminal, cd into the project folder and run: ```python3 -m pytest cleaning-robot/intergation_test/*```
+
+
+## Backlog
+
+See the [open issues](https://github.com/Kira060200/cleaning-robot-CHRSS/projects/1) for the full list of features.
+
 ## CHRSS Team members:
 - **[Constantin Gabriel-Adrian](https://github.com/Kira060200)**
 - **[Hernest Mihai](https://github.com/mihaihe1)**
 - **[Richițeanu Mihai-Sebastian](https://github.com/SebastianRichiteanu)**
 - **[Sociu Daniel](https://github.com/danielsociu)**
 - **[Stoicesu Adrian-Nicolae](https://github.com/Deadlykittenn)**
+
