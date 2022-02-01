@@ -65,7 +65,6 @@ def get_bin_level():
         }
     }
 
-
 def get_cleaning_settings(type):
     cleaning_settings = get_db().execute(
         'SELECT settings_v, settings_m'
