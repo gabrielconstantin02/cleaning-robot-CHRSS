@@ -11,7 +11,7 @@ import auth
 import environment
 import status
 from controllers import automatic_empty_controller, air_controller, cleaning_controller, cleaning_schedule_controller, \
-    mop_settings_controller, vacuum_settings_controller
+    mop_settings_controller, vacuum_settings_controller, cleaning_history_controller
 import controllers.map_controller
 import led
 
@@ -63,6 +63,7 @@ def create_app(test_config=None):
     app.register_blueprint(vacuum_settings_controller.bp)
     app.register_blueprint(mop_settings_controller.bp)
     app.register_blueprint(cleaning_schedule_controller.bp)
+    app.register_blueprint(cleaning_history_controller.bp)
     app.register_blueprint(air_controller.bp)
     app.register_blueprint(automatic_empty_controller.bp)
     app.register_blueprint(controllers.map_controller.bp)

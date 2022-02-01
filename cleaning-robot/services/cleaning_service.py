@@ -1,10 +1,13 @@
 from services.map_service import get_map
 from collections import deque as queue
 from services.robot_service import *
+from services.cleaning_history_service import *
 from environment import *
+import timeit
 
 
 def clean_floor(type):
+    start_time = timeit.default_timer()
     # get map
     data = get_map()['data']
     map, row_size, col_size, base_row, base_col = data['map'], data['map_size_row'], data['map_size_col'], data['map_base_row'], data['map_base_col']
@@ -97,7 +100,13 @@ def clean_floor(type):
             set_bin_level(bin_level)
         else:
             set_resource_level(resource_level)
+
+        end_time = timeit.default_timer()
+        elapsed_time = end_time - start_time
+        insert_cleaning_history(type, elapsed_time)
+
         return path, messages
 
     return bfs(map, visited, base_row, base_col)
+
 
