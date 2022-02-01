@@ -2,7 +2,7 @@ from services.map_service import get_map
 from collections import deque as queue
 from services.robot_service import *
 from services.cleaning_history_service import *
-from environment import *
+from controllers.environment_controller import *
 import timeit
 
 

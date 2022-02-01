@@ -8,10 +8,9 @@ import eventlet
 
 import db
 import auth
-import environment
 import status
 from controllers import automatic_empty_controller, air_controller, cleaning_controller, cleaning_schedule_controller, \
-    mop_settings_controller, vacuum_settings_controller, cleaning_history_controller
+    mop_settings_controller, vacuum_settings_controller, cleaning_history_controller, environment_controller
 import controllers.map_controller
 import led
 
@@ -58,7 +57,7 @@ def create_app(test_config=None):
         return 'Hello, World!'
 
     app.register_blueprint(auth.bp)
-    app.register_blueprint(environment.bp)
+    app.register_blueprint(environment_controller.bp)
     app.register_blueprint(cleaning_controller.bp)
     app.register_blueprint(vacuum_settings_controller.bp)
     app.register_blueprint(mop_settings_controller.bp)

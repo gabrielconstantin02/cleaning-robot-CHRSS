@@ -3,6 +3,8 @@ from flask import (
     Blueprint, request, jsonify
 )
 
+from auth import login_required
+from services.robot_service import *
 from db import get_db
 
 bp = Blueprint('environment', __name__)
@@ -105,3 +107,21 @@ def set_bin_level(base=-1):
                 'value': check['value']
              }
              }), 200
+
+
+@bp.route('/bin_level', methods=['GET'])
+@login_required
+def get_bin():
+    return jsonify(get_bin_level()), 200
+
+
+@bp.route('/battery_level', methods=['GET'])
+@login_required
+def get_battery():
+    return jsonify(get_battery_level()), 200
+
+
+@bp.route('/resource_level', methods=['GET'])
+@login_required
+def get_resource():
+    return jsonify(get_resource_level()), 200

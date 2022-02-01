@@ -97,4 +97,4 @@ def login_required(view):
 
 @bp.route('/index')
 def index():
-    return 'Login test'
+    return 'Logged in'

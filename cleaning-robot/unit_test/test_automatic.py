@@ -1,9 +1,4 @@
-import pytest
-from client import client
-from flask import jsonify
 import json
-import services.robot_service as robot_service
-import environment
 
 bin_lvl = 10
 bin_full = 100

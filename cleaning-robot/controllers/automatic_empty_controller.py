@@ -2,7 +2,7 @@ from flask import (
     Blueprint, jsonify
 )
 from services.robot_service import get_bin_level
-from environment import set_bin_level
+from controllers.environment_controller import set_bin_level
 from auth import login_required
 
 bp = Blueprint('automatic_empty', __name__, url_prefix='/bin')

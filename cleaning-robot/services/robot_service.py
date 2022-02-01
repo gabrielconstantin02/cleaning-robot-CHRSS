@@ -16,6 +16,12 @@ def get_battery_level():
         ' ORDER BY timestamp DESC'
     ).fetchone()
 
+    if current_battery_level is None:
+        return {
+            'status': 'No battery level record found',
+            'data': None
+        }
+
     return {
         'status': 'Successfully got battery level',
         'data': {
@@ -32,6 +38,12 @@ def get_resource_level():
         ' FROM resource_level'
         ' ORDER BY timestamp DESC'
     ).fetchone()
+
+    if current_resource_level is None:
+        return {
+            'status': 'No resource level record found',
+            'data': None
+        }
 
     return {
         'status': 'Successfully got resource level',
