@@ -103,7 +103,7 @@ def background_thread():
         with app.app_context():
             message = json.dumps(status.get_status(), default=str)
         # Publish
-        mqtt.publish('python/mqtt', message)
+        mqtt.publish('robot/status', message)
 
 
 # App will now have to be run with `python app.py` as flask is now wrapped in socketio.

@@ -42,9 +42,9 @@ To test the http connection and api you can use something like [postman](https:/
 #### MQTT:  
 
 To test the MQTT we need to first make a GET request to localhost:5000/start_MQTT which will start the mqtt thread  
-Next we need to use mosquitto_sub to connect to the mosquitto broker on the topic python/mqtt:  
+Next we need to use mosquitto_sub to connect to the mosquitto broker on the topic robot/status:  
    ```console
-   foo@project:~$ mosquitto_sub -v -t "python/mqtt"
+   foo@project:~$ mosquitto_sub -v -t "robot/status"
    ```
 
 ## CHRSS Team members:
