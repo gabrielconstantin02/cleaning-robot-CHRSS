@@ -18,7 +18,7 @@ def get_battery_level():
 
     if current_battery_level is None:
         return {
-            'status': 'No battery level record found',
+            'status': 'No battery level found',
             'data': None
         }
 
@@ -41,7 +41,7 @@ def get_resource_level():
 
     if current_resource_level is None:
         return {
-            'status': 'No resource level record found',
+            'status': 'No resource level found',
             'data': None
         }
 
@@ -76,6 +76,18 @@ def get_bin_level():
             'value': bin_level['value'],
         }
     }
+
+
+def get_cleaning():
+    cleaning = get_db().execute(
+        'SELECT id, timestamp, type, settings_v, settings_m'
+        ' FROM cleaning'
+        ' ORDER BY timestamp DESC'
+    ).fetchone()
+    return {
+        "data": cleaning
+    }
+
 
 def get_cleaning_settings(type):
     cleaning_settings = get_db().execute(

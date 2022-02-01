@@ -28,9 +28,9 @@ def set_air_realtime():
 
 def get_air():
     db = get_db()
-    air_quality =  db.execute("""SELECT *
+    air_quality = db.execute("""SELECT *
                                         FROM air_quality
                                         ORDER BY TIMESTAMP DESC
                                         LIMIT 1"""
-                ).fetchone()
+                             ).fetchone()
     return air_quality
