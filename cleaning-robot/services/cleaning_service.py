@@ -1,9 +1,13 @@
 from services.map_service import get_map
+from collections import deque as queue
+from services.robot_service import *
+from environment import *
 
 
-def clean_floor():
-    map, row_size, col_size, base_row, base_col = get_map(False)
-    from collections import deque as queue
+def clean_floor(type):
+    # get map
+    data = get_map()['data']
+    map, row_size, col_size, base_row, base_col = data['map'], data['map_size_row'], data['map_size_col'], data['map_base_row'], data['map_base_col']
 
     # Direction vectors
     dRow = [-1, 0, 1, 0]
@@ -28,7 +32,27 @@ def clean_floor():
         return True
 
     def bfs(grid, visited, row, col):
+        # get battery level
+        data = get_battery_level()['data']
+        battery_level = data['value']
+
+        if type == 0:
+            # get bin level
+            data = get_bin_level()['data']
+            bin_level = data['value']
+            # get cleaning settings
+            data = get_cleaning_settings(type)['data']
+            frequency, power = data['frequency'], data['power']
+        else:
+            # get resource level
+            data = get_resource_level()['data']
+            resource_level = data['value']
+            # get cleaning settings
+            data = get_cleaning_settings(type)['data']
+            frequency = data['frequency']
+
         path = ""
+        messages = ""
         # Stores indices of the matrix cells
         q = queue()
 
@@ -39,13 +63,27 @@ def clean_floor():
 
         # Iterate while the queue
         # is not empty
+        dirt = get_dirt_level()
         while len(q) > 0:
             cell = q.popleft()
             x = cell[0]
             y = cell[1]
             path += str((x, y))
+            battery_level -= (dirt * power if type == 0 else dirt * 3)
+            if type == 0:
+                bin_level += dirt
+                if bin_level >= 100:
+                    bin_level = 0
+                    messages += "Done automatic bin empty | "
+            else:
+                resource_level -= dirt * 2
+                if resource_level <= 0:
+                    resource_level = 100
+                    messages += "Done automatic resource refill | "
 
-            # q.pop()
+            if battery_level <= 20:
+                battery_level = 100
+                messages += "Done automatic battery recharge | "
 
             # Go to the adjacent cells
             for i in range(4):
@@ -54,7 +92,12 @@ def clean_floor():
                 if valid(visited, adjx, adjy):
                     q.append((adjx, adjy))
                     visited[adjx][adjy] = True
-        return path
+        set_battery_level(battery_level)
+        if type == 0:
+            set_bin_level(bin_level)
+        else:
+            set_resource_level(resource_level)
+        return path, messages
 
     return bfs(map, visited, base_row, base_col)
 

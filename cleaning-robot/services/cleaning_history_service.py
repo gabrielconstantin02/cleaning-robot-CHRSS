@@ -1,5 +1,6 @@
 from db import get_db
 
+
 def get_cleaning_history(type, date):
     result = get_db().execute(
         'SELECT *'

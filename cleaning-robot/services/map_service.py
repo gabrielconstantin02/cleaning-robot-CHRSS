@@ -2,7 +2,7 @@ import random
 from db import get_db
 
 
-def get_map(jsonify=True):
+def get_map():
     map_db = get_db().execute(
         'SELECT *'
         ' FROM map'
@@ -18,20 +18,18 @@ def get_map(jsonify=True):
     base = (map_db['map_base_row'], map_db['map_base_col'])
     size = (map_db['map_size_row'], map_db['map_size_col'])
     mapping = convert_map_from_sql(map_cells_db, size)
-    if jsonify:
-        return {
-            'status': 'Created new mapping',
-            'data': {
-                'id': map_db['map_name'],
-                'map_base_row': base[0],
-                'map_base_col': base[1],
-                'map_size_row': size[0],
-                'map_size_col': size[1],
-                'map': mapping
-            }
+
+    return {
+        'status': 'Created new mapping',
+        'data': {
+            'id': map_db['map_name'],
+            'map_base_row': base[0],
+            'map_base_col': base[1],
+            'map_size_row': size[0],
+            'map_size_col': size[1],
+            'map': mapping
         }
-    else:
-        return mapping, size[0], size[1], base[0], base[1]
+    }
 
 
 def convert_map_from_sql(cursor, size):

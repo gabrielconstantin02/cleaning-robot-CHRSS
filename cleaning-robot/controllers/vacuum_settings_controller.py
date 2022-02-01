@@ -1,6 +1,6 @@
 from services.air_service import *
 from db import get_db
-from services.vacuum_settings_service import get_vacuum_settings
+from services.robot_service import get_vacuum_settings
 from auth import login_required
 
 bp = Blueprint('vacuum_settings', __name__)
@@ -21,7 +21,7 @@ def set_vacuum_settings_api():
                 'status': 'No air quality record found; trying api...'
             }), 404
         frequency = air['value'] // 50 + 1
-        power = frequency * 100
+        power = frequency * 20
     elif not frequency:
         if air is None:
             set_air_realtime()
@@ -35,7 +35,7 @@ def set_vacuum_settings_api():
             return jsonify({
                 'status': 'No air quality record found; trying api...'
             }), 404
-        power = (air['value'] // 50 + 1) * 100
+        power = (air['value'] // 50 + 1) * 20
 
     db = get_db()
     db.execute(

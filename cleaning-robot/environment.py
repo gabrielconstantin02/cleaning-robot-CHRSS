@@ -9,14 +9,14 @@ bp = Blueprint('environment', __name__)
 
 
 @bp.route('/resource_level', methods=['POST'])
-def set_resource_level(base=False):
-    if not base:
+def set_resource_level(base=-1):
+    if base == -1:
         resource_level = request.form['resource_level']
 
         if not resource_level:
             return jsonify({'status': 'Resource level is required.'}), 403
     else:
-        resource_level = 100
+        resource_level = base
 
     db = get_db()
     db.execute(
@@ -42,8 +42,8 @@ def set_resource_level(base=False):
 
 
 @bp.route('/battery_level', methods=['POST'])
-def set_battery_level(base=False):
-    if not base:
+def set_battery_level(base=-1):
+    if base == -1:
         resource_level = request.form['battery_level']
 
         if not resource_level:
@@ -75,8 +75,8 @@ def set_battery_level(base=False):
 
 
 @bp.route('/bin_level', methods=['POST'])
-def set_bin_level(automatic_empty=False):
-    if not automatic_empty:
+def set_bin_level(base=-1):
+    if base == -1:
         resource_level = request.form['bin_level']
         if not resource_level:
             return jsonify({'status': 'Bin level is required.'}), 403
@@ -91,7 +91,7 @@ def set_bin_level(automatic_empty=False):
         (resource_level,)
     )
     db.commit()
-    if not automatic_empty:
+    if base == -1:
         check = get_db().execute(
             'SELECT id, timestamp, value'
             ' FROM bin_level'

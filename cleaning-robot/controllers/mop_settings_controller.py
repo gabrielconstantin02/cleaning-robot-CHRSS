@@ -1,13 +1,13 @@
 from services.air_service import *
 from db import get_db
-from services.mop_settings_service import get_mop_settings
+from services.robot_service import get_mop_settings
 from auth import login_required
 
 bp = Blueprint('mop_settings', __name__)
 
 @bp.route('/mop_settings', methods=['POST'])
 @login_required
-def set_vacuum_settings_api():
+def set_mop_settings_api():
     frequency = request.form['frequency']
     error = None
 

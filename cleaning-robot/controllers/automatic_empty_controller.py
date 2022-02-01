@@ -23,7 +23,7 @@ def automatic_empty_api():
     print(check['value'])
 
     if check['value'] == 100:
-        set_bin_level(True)
+        set_bin_level(0)
         bin_data = get_bin_level()
         check = bin_data['data']
         return jsonify({

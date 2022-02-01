@@ -72,18 +72,20 @@ def get_cleaning_api():
 @bp.route('/vacuuming', methods=['GET'])
 @login_required
 def vacuuming_api():
-    path = clean_floor()
+    path, messages = clean_floor(0)
     return jsonify({
             'status': 'Finished vacuuming',
+            'logs': messages,
             'path': path
         }), 200
 
 @bp.route('/mopping', methods=['GET'])
 @login_required
 def mapping_api():
-    path = clean_floor()
+    path, messages = clean_floor(1)
     return jsonify({
             'status': 'Finished mopping',
+            'logs': messages,
             'path': path
         }), 200
 
