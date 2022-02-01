@@ -5,28 +5,47 @@ cleaning-robot-CHRSS -> vacuuming & mopping smart robot
 
 ### Prerequirements:  
 
-1. Create an environment and install the requirements.txt
-2. Install mosquitto 
+1. Create an virtual environment and install the requirements.txt
+2. Install [mosquitto](https://mosquitto.org/)
 
 ### Running the project:
 
-1. run mosquitto: 
-    '''console
-    foo@bar:~$ mosquitto
-    '''
-2. export flask env and flask run
-    '''console
-    export FLASK_ENV=development
-    export FLASK_APP=cleaning-robot/app.py
-    '''
-3. initialize database:
-    '''console
-    flask init-db
-    '''
-4. run the project:
-    '''console
-    python cleaning-robot/app.py
-    '''
+0. enable virtual environment:  
+    ```console
+    foo@project:~$ source path-to-venv/bin/activate
+    ```
+
+1. run mosquitto:  
+    ```console
+    foo@project:~$ mosquitto
+    ```
+2. export flask env and flask run  
+    ```console
+    foo@project:~$ export FLASK_ENV=development
+    foo@project:~$ export FLASK_APP=cleaning-robot/app.py
+    ```
+3. initialize database:  
+    ```console
+    foo@project:~$ flask init-db
+    ```
+4. run the project:  
+    ```console
+    foo@project:~$ python cleaning-robot/app.py
+    ```
+   
+### Testing:  
+
+#### HTTP:  
+
+To test the http connection and api you can use something like [postman](https://www.postman.com/)
+
+#### MQTT:  
+
+To test the MQTT we need to first make a GET request to localhost:5000/start_MQTT which will start the mqtt thread  
+Next we need to use mosquitto_sub to connect to the mosquitto broker on the topic python/mqtt:  
+   ```console
+   foo@project:~$ mosquitto_sub -v -t "python/mqtt"
+   ```
 
 ## CHRSS Team members:
 - **[Constantin Gabriel-Adrian](https://github.com/Kira060200)**
