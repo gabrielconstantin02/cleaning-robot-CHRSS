@@ -4,6 +4,7 @@ from flask import (
 
 from auth import login_required
 from db import get_db
+from cleaning_service import clean_floor
 
 bp = Blueprint('cleaning', __name__)
 
@@ -67,3 +68,22 @@ def get_cleaning():
         'cleaning_m': result['settings_m'],
     }
 }), 200
+
+@bp.route('/vacuuming', methods=['GET'])
+@login_required
+def vacuuming():
+    path = clean_floor()
+    return jsonify({
+            'status': 'Finished vacuuming',
+            'path': path
+        }), 200
+
+@bp.route('/mopping', methods=['GET'])
+@login_required
+def mapping():
+    path = clean_floor()
+    return jsonify({
+            'status': 'Finished mopping',
+            'path': path
+        }), 200
+

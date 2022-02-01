@@ -53,7 +53,7 @@ def create_app(test_config=None):
     db.init_app(app)
 
    # a simple page that says hello
-    @app.route('/hello')
+    @app.route('/start_MQTT')
     def hello():
         global thread
         if thread is None:
@@ -105,7 +105,7 @@ def background_thread():
         with app.app_context():
             message = json.dumps(status.get_status(), default=str)
         # Publish
-        mqtt.publish('python/mqtt', message)
+        mqtt.publish('robot/status', message)
 
 
 # App will now have to be run with `python app.py` as flask is now wrapped in socketio.
@@ -116,35 +116,6 @@ def run_socketio_app():
     create_mqtt_app()
     socketio.run(app, host='localhost', port=5000, use_reloader=False, debug=True)
 
-    @socketio.on('publish')
-    def handle_publish(json_str):
-        data = json.loads(json_str)
-        mqtt.publish(data['topic'], data['message'])
-
-
-    @socketio.on('subscribe')
-    def handle_subscribe(json_str):
-        data = json.loads(json_str)
-        mqtt.subscribe(data['topic'])
-
-
-    @socketio.on('unsubscribe_all')
-    def handle_unsubscribe_all():
-        mqtt.unsubscribe_all()
-
-
-    @mqtt.on_message()
-    def handle_mqtt_message(client, userdata, message):
-        data = dict(
-            topic=message.topic,
-            payload=message.payload.decode()
-        )
-        socketio.emit('mqtt_message', data=data)
-
-
-    @mqtt.on_log()
-    def handle_logging(client, userdata, level, buf):
-        print(level, buf)
 
 # If we run with python - this would imply to initialize the database manually
 if __name__ == '__main__':
