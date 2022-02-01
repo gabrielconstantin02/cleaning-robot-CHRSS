@@ -28,7 +28,7 @@ def clean_floor():
         return True
 
     def bfs(grid, visited, row, col):
-
+        path = ""
         # Stores indices of the matrix cells
         q = queue()
 
@@ -43,7 +43,7 @@ def clean_floor():
             cell = q.popleft()
             x = cell[0]
             y = cell[1]
-            print(grid[x][y], end=" ")
+            path += str((x, y))
 
             # q.pop()
 
@@ -54,7 +54,7 @@ def clean_floor():
                 if valid(visited, adjx, adjy):
                     q.append((adjx, adjy))
                     visited[adjx][adjy] = True
+        return path
 
-    bfs(map, visited, base_row, base_col)
-    return 'All Clean!'
+    return bfs(map, visited, base_row, base_col)
 
