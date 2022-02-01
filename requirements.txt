@@ -5,3 +5,5 @@ Flask_MQTT==1.1.1
 Flask_SocketIO==5.1.1
 requests==2.27.1
 Werkzeug==2.0.2
+pytest==6.2.5
+paho-mqtt==1.6.1
