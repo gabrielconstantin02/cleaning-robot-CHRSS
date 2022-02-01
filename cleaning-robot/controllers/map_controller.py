@@ -4,7 +4,7 @@ from flask import (
 
 from auth import login_required
 from db import get_db
-from map_service import *
+from services.map_service import *
 
 bp = Blueprint('map', __name__)
 bp_cells = Blueprint('map_cells', __name__)

@@ -1,16 +1,13 @@
-from flask import (
-    Blueprint, request, jsonify
-)
-
-from air_service import *
+from services.air_service import *
 from db import get_db
+from services.vacuum_settings_service import get_vacuum_settings
 from auth import login_required
 
 bp = Blueprint('vacuum_settings', __name__)
 
 @bp.route('/vacuum_settings', methods=['POST'])
 @login_required
-def set_vacuum_settings():
+def set_vacuum_settings_api():
     frequency = request.form['frequency']
     power = request.form['power']
     error = None
@@ -60,24 +57,12 @@ def set_vacuum_settings():
             'timestamp': check['timestamp'],
             'frequency': check['frequency'],
             'power': check['power']
-         }
-         }), 200
+        }
+    }), 200
 
 @bp.route('/vacuum_settings', methods=['GET'])
 @login_required
-def get_vacuum_settings():
-        id = request.form['id']
-        result = get_db().execute(
-            'SELECT *'
-            ' FROM vacuum_settings'
-            ' WHERE id=(?)',
-            (id, )
-        ).fetchone()
-        return jsonify({
-        'data': {
-            'id': result['id'],
-            'timestamp': result['timestamp'],
-            'frequency': result['frequency'],
-            'power': result['power'],
-        }
-    }), 200
+def get_vacuum_settings_api():
+    id = request.form['id']
+    result = get_vacuum_settings(id)
+    return jsonify(result), 200

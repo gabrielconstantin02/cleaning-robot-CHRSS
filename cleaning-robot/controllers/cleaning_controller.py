@@ -4,13 +4,13 @@ from flask import (
 
 from auth import login_required
 from db import get_db
-from cleaning_service import clean_floor
+from services.cleaning_service import clean_floor
 
 bp = Blueprint('cleaning', __name__)
 
 @bp.route('/cleaning', methods=['POST'])
 @login_required
-def set_cleaning():
+def set_cleaning_api():
     if request.method == 'POST':
         type = request.form['type']
         settings_v = request.form['settings_v']
@@ -51,7 +51,7 @@ def set_cleaning():
 
 @bp.route('/cleaning', methods=['GET'])
 @login_required
-def get_cleaning():
+def get_cleaning_api():
     id = request.form['id']
     result = get_db().execute(
         'SELECT *'
@@ -71,7 +71,7 @@ def get_cleaning():
 
 @bp.route('/vacuuming', methods=['GET'])
 @login_required
-def vacuuming():
+def vacuuming_api():
     path = clean_floor()
     return jsonify({
             'status': 'Finished vacuuming',
@@ -80,7 +80,7 @@ def vacuuming():
 
 @bp.route('/mopping', methods=['GET'])
 @login_required
-def mapping():
+def mapping_api():
     path = clean_floor()
     return jsonify({
             'status': 'Finished mopping',

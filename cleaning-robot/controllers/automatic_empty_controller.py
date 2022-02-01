@@ -1,4 +1,7 @@
-from automatic_empty_service import *
+from flask import (
+    Blueprint, jsonify
+)
+from services.robot_service import get_bin_level
 from environment import set_bin_level
 from auth import login_required
 
@@ -7,20 +10,22 @@ bp = Blueprint('automatic_empty', __name__, url_prefix='/bin')
 
 @bp.route('/', methods=['GET'])
 @login_required
-def automatic_empty():
-
-    check = get_bin_level()
+def automatic_empty_api():
+    bin_data = get_bin_level()
+    check = bin_data['data']
+    status = bin_data['status']
 
     if check is None:
         return jsonify({
-            'status': 'No bin level record found'
+            'status': status
         }), 404
 
     print(check['value'])
 
     if check['value'] == 100:
         set_bin_level(True)
-        check = get_bin_level()
+        bin_data = get_bin_level()
+        check = bin_data['data']
         return jsonify({
             'status': 'Finished automatic bin empty',
             'data': {
@@ -30,7 +35,7 @@ def automatic_empty():
             }
         }), 200
     return jsonify({
-        'status': 'Automatic empty not required. Bin is not full !',
+        'status': 'Automatic empty not required. Bin is not full!',
         'data': {
             'id': check['id'],
             'timestamp': check['timestamp'],

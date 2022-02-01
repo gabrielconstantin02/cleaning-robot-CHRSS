@@ -1,4 +1,3 @@
-import os
 from flask import Flask
 from flask_mqtt import Mqtt
 from flask_socketio import SocketIO
@@ -10,14 +9,10 @@ import eventlet
 import db
 import auth
 import environment
-import cleaning
-import vacuum_settings
-import mop_settings
-import cleaning_schedule
 import status
-import air_quality
-import automatic_empty
-import map_controller
+from controllers import automatic_empty_controller, air_controller, cleaning_controller, cleaning_schedule_controller, \
+    mop_settings_controller, vacuum_settings_controller
+import controllers.map_controller
 
 app = None
 mqtt = None
@@ -44,10 +39,10 @@ def create_app(test_config=None):
         app.config.from_mapping(test_config)
 
     # ensure the instance folder exists
-    try:
-        os.makedirs(app.instance_path)
-    except OSError:
-        pass
+    # try:
+    #     os.makedirs(app.instance_path)
+    # except OSError:
+    #     pass
 
     db.init_app(app)
 
@@ -63,14 +58,14 @@ def create_app(test_config=None):
 
     app.register_blueprint(auth.bp)
     app.register_blueprint(environment.bp)
-    app.register_blueprint(cleaning.bp)
-    app.register_blueprint(vacuum_settings.bp)
-    app.register_blueprint(mop_settings.bp)
-    app.register_blueprint(cleaning_schedule.bp)
-    app.register_blueprint(air_quality.bp)
-    app.register_blueprint(automatic_empty.bp)
-    app.register_blueprint(map_controller.bp)
-    app.register_blueprint(map_controller.bp_cells)
+    app.register_blueprint(cleaning_controller.bp)
+    app.register_blueprint(vacuum_settings_controller.bp)
+    app.register_blueprint(mop_settings_controller.bp)
+    app.register_blueprint(cleaning_schedule_controller.bp)
+    app.register_blueprint(air_controller.bp)
+    app.register_blueprint(automatic_empty_controller.bp)
+    app.register_blueprint(controllers.map_controller.bp)
+    app.register_blueprint(controllers.map_controller.bp_cells)
 
     return app
 
