@@ -20,6 +20,8 @@ def get_status():
             settings = robot_service.get_vacuum_settings(cleaning['settings_v'])
         else:
             settings = robot_service.get_vacuum_settings(cleaning['settings_m'])
+        data['cleaning'] = cleaning['type']
+        data['settings'] = settings
 
     # getting the bin level
     bin_data = robot_service.get_bin_level()['data']
