@@ -12,6 +12,7 @@ The app was created to improve your life style and save you time.
 <li> <a href="https://docs.python-requests.org/en/latest/"> Requests</a></li>
 <li><a href="https://docs.pytest.org/en/6.2.x/"> Pytest </a> (for automation testing)</li>
 <li><a href="https://openweathermap.org/api">Open Weather App</a> (for air pollution stats)</li>
+<li> <a href="https://coverage.readthedocs.io/en/6.3/"> Coverage</a> (for automation testing coverage)</li>
 
 ## How to run the project  
 
@@ -68,6 +69,12 @@ To run the unit tests open a terminal, cd into the project folder and run: ```py
 #### Integration tests:
 
 To run the integration tests open a terminal, cd into the project folder and run: ```python3 -m pytest cleaning-robot/intergation_test/*```
+
+#### Tests coverage
+To see tests coverage, use
+```python3 -m coverage run -m pytest cleaning-robot/unit_test/*``` or ```python3 -m coverage run -m pytest cleaning-robot/unit_test/*``` and to see the report use
+```python3 -m coverage report```
+
 
 
 ## Backlog
