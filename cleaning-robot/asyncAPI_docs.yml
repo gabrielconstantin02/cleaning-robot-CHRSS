@@ -1,0 +1,62 @@
+asyncapi: 2.0.0
+info:
+  title: Cleaning Robot CHRSS API
+  version: '1.0.0'
+  description: |
+    A smart cleaning robot that be controlled remotely to clean and mop
+
+    ### Check out some of its features:
+
+    * Zonal cleaning
+    * Cleaning scheduling
+    * Automatic empty system
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+
+servers:
+  production:
+    url: localhost:{port}
+    protocol: mqtt
+    description: The mosquitto MQTT broker
+    variables:
+      port:
+        description: The port on which the mqtt broker runs
+        default: '1883'
+        enum:
+          - '1883'
+
+defaultContentType: application/json
+
+channels:
+  robot/status:
+    description: Topic that entails robot status
+    subscribe:
+      summary: Receive information about robot status
+      operationId: emitRobotStatus
+      message:
+        $ref: '#/components/messages/robotStatus'
+
+
+
+components:
+  messages:
+    robotStatus:
+      name: robotStatus
+      title: Robot Status
+      summary: Inform about robot status
+      contentType: application/json
+      payload:
+        $ref: "#/components/schemas/status"
+
+  schemas:
+    status:
+      type: object
+      properties:
+        cleaning:
+          type: integer
+          description: |
+            Current operation mode of the robot
+            0 - vacuuming
+            1 - mopping
+            2 - resting
