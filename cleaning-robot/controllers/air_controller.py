@@ -1,16 +1,12 @@
-from flask import (
-    Blueprint, request, jsonify
-)
-
 from auth import login_required
-from air_service import *
+from services.air_service import *
 
 bp = Blueprint('air_api', __name__, url_prefix='/air')
 
 
 @bp.route('/', methods=['GET', 'POST'])
 @login_required
-def set_or_get_air():
+def set_or_get_air_api():
     if request.method == 'POST':
         if 'air_quality' not in request.form:
             return jsonify({'status': 'Air quality is required.'}), 400
@@ -37,7 +33,7 @@ def set_or_get_air():
 
 @bp.route('/real', methods=['GET'])
 @login_required
-def get_air_realtime():
+def get_air_realtime_api():
     set_air_realtime()
     check = get_air()
 

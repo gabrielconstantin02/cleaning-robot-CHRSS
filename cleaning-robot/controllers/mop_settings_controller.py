@@ -1,16 +1,13 @@
-from flask import (
-    Blueprint, request, jsonify
-)
-
-from air_service import *
+from services.air_service import *
 from db import get_db
+from services.mop_settings_service import get_mop_settings
 from auth import login_required
 
 bp = Blueprint('mop_settings', __name__)
 
 @bp.route('/mop_settings', methods=['POST'])
 @login_required
-def set_vacuum_settings():
+def set_vacuum_settings_api():
     frequency = request.form['frequency']
     error = None
 
@@ -43,23 +40,12 @@ def set_vacuum_settings():
             'id': check['id'],
             'timestamp': check['timestamp'],
             'frequency': check['frequency']
-         }
-         }), 200
+        }
+    }), 200
 
 @bp.route('/mop_settings', methods=['GET'])
 @login_required
-def get_mop_settings():
+def get_mop_settings_api():
     id = request.form['id']
-    result = get_db().execute(
-        'SELECT *'
-        ' FROM mop_settings'
-        ' WHERE id=(?)',
-        (id, )
-    ).fetchone()
-    return jsonify({
-    'data': {
-        'id': result['id'],
-        'timestamp': result['timestamp'],
-        'frequency': result['frequency']
-    }
-}), 200
+    result = get_mop_settings(id)
+    return jsonify(result), 200

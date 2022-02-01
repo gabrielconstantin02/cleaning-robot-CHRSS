@@ -1,4 +1,4 @@
-from map_service import get_map
+from services.map_service import get_map
 
 
 def clean_floor():

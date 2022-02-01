@@ -3,13 +3,14 @@ from flask import (
 )
 
 from db import get_db
+from services.cleaning_schedule_service import get_cleaning_schedule
 from auth import login_required
 
 bp = Blueprint('cleaning_schedule', __name__)
 
 @bp.route('/cleaning_schedule', methods=['POST'])
 @login_required
-def set_cleaning_schedule():
+def set_cleaning_schedule_api():
     type = request.form['type']
     date = request.form['date']
     error = None
@@ -43,19 +44,10 @@ def set_cleaning_schedule():
 
 @bp.route('/cleaning_schedule', methods=['GET'])
 @login_required
-def get_cleaning_schedule():
+def get_cleaning_schedule_api():
     type = request.form['type']
     date = request.form['date']
-    result = get_db().execute(
-        'SELECT *'
-        ' FROM cleaning_schedule'
-        ' WHERE type=(?) AND date=(?)',
-        (type, date)
-    ).fetchone()
-    return jsonify({
-        'data': {
-            'timestamp': result['timestamp'],
-            'type': result['type'],
-            'date': result['date'],
-        }
-}), 200
+    result = get_cleaning_schedule(type, date)
+    return jsonify(
+        date
+    ), 200

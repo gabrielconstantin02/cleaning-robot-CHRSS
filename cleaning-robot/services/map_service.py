@@ -23,6 +23,8 @@ def get_map(jsonify=True):
             'status': 'Created new mapping',
             'data': {
                 'id': map_db['map_name'],
+                'map_base_row': base[0],
+                'map_base_col': base[1],
                 'map_size_row': size[0],
                 'map_size_col': size[1],
                 'map': mapping

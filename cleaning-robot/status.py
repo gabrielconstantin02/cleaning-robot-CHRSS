@@ -1,5 +1,5 @@
 from db import get_db
-from map_service import get_map
+
 
 def get_status():
     cleaning = get_db().execute(
