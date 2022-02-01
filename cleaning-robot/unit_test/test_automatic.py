@@ -1,3 +1,4 @@
+from unit_test.client import client
 import json
 
 bin_lvl = 10

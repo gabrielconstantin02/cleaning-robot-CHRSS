@@ -1,5 +1,5 @@
 import pytest
-from client import client
+from unit_test.client import client
 from flask import jsonify
 import json
 import services.map_service as map_service
