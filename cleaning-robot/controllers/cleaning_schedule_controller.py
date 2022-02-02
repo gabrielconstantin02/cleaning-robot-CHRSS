@@ -49,5 +49,5 @@ def get_cleaning_schedule_api():
     date = request.form['date']
     result = get_cleaning_schedule(type, date)
     return jsonify(
-        date
+        result
     ), 200

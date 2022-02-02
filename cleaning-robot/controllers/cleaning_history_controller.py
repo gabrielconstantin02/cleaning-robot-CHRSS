@@ -13,5 +13,5 @@ bp = Blueprint('cleaning_history', __name__)
 def get_cleaning_history_api():
     type = request.form['type']
     date = request.form['date']
-    data = get_cleaning_history(type, date)
-    return jsonify(data), 200
+    result = get_cleaning_history(type, date)
+    return jsonify(result), 200

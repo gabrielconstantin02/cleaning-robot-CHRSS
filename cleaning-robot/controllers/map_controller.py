@@ -52,6 +52,8 @@ def set_map_api():
         'status': 'Created new mapping',
         'data': {
             'id': map_name,
+            'map_base_row': station_pos[0],
+            'map_base_col': station_pos[1],
             'map_size_row': size[0],
             'map_size_col': size[1],
             'map': new_mapping
