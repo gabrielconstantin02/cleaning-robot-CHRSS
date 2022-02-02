@@ -8,7 +8,7 @@ servers:
 paths:
   /cleaning:
     post:
-      description: Auto generated using Swagger Inspector
+      description: Endpoint for setting cleaning preferences
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -70,7 +70,7 @@ paths:
       servers:
         - url: http://localhost:5000
     get:
-      description: Auto generated using Swagger Inspector
+      description: Endpoint for getting cleaning preferences
       parameters:
         - name: id
           in: query
@@ -127,7 +127,7 @@ paths:
       - url: http://localhost:5000
   /resource_level:
     post:
-      description: Auto generated using Swagger Inspector
+      description: Endpoint for setting resource level
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -169,7 +169,7 @@ paths:
       servers:
         - url: http://localhost:5000
     get:
-      description: Auto generated using Swagger Inspector
+      description: Endpoint for getting resource level
       responses:
         '200':
           description: Auto generated using Swagger Inspector
@@ -206,7 +206,7 @@ paths:
       - url: http://localhost:5000
   /cleaning_history:
     get:
-      description: Auto generated using Swagger Inspector
+      description: Endpoint for getting cleaning history
       parameters:
         - name: date
           in: query
@@ -257,7 +257,7 @@ paths:
       - url: http://localhost:5000
   /mop_settings:
     post:
-      description: Auto generated using Swagger Inspector
+      description: Endpoint for setting mop settings
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -299,7 +299,7 @@ paths:
       servers:
         - url: http://localhost:5000
     get:
-      description: Auto generated using Swagger Inspector
+      description: Endpoint for getting mop settings
       parameters:
         - name: id
           in: query
@@ -339,7 +339,7 @@ paths:
       - url: http://localhost:5000
   /bin_level:
     post:
-      description: Auto generated using Swagger Inspector
+      description: Endpoint for setting bin level
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -381,7 +381,7 @@ paths:
       servers:
         - url: http://localhost:5000
     get:
-      description: Auto generated using Swagger Inspector
+      description: Endpoint for getting bin level
       responses:
         '200':
           description: Auto generated using Swagger Inspector
@@ -418,7 +418,7 @@ paths:
       - url: http://localhost:5000
   /battery_level:
     post:
-      description: Auto generated using Swagger Inspector
+      description: Endpoint for setting battery level
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -460,7 +460,7 @@ paths:
       servers:
         - url: http://localhost:5000
     get:
-      description: Auto generated using Swagger Inspector
+      description: Endpoint for getting battery level
       responses:
         '200':
           description: Auto generated using Swagger Inspector
@@ -497,7 +497,7 @@ paths:
       - url: http://localhost:5000
   /cleaning_schedule:
     post:
-      description: Auto generated using Swagger Inspector
+      description: Endpoint for scheduling a cleanining program
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -539,7 +539,7 @@ paths:
       servers:
         - url: http://localhost:5000
     get:
-      description: Auto generated using Swagger Inspector
+      description: Endpoint for getting the cleaning schedule
       parameters:
         - name: date
           in: query
@@ -584,7 +584,7 @@ paths:
       - url: http://localhost:5000
   /vacuuming:
     get:
-      description: Auto generated using Swagger Inspector
+      description: Endpoint for starting vacuuming
       responses:
         '200':
           description: Auto generated using Swagger Inspector
@@ -594,7 +594,7 @@ paths:
       - url: http://localhost:5000
   /bin/:
     get:
-      description: Auto generated using Swagger Inspector
+      description: Endpoint for automatic bin empty
       responses:
         '200':
           description: Auto generated using Swagger Inspector
@@ -631,7 +631,7 @@ paths:
       - url: http://localhost:5000
   /air/real:
     get:
-      description: Auto generated using Swagger Inspector
+      description: Endpoint for getting PM10 level from air
       responses:
         '200':
           description: Auto generated using Swagger Inspector
@@ -668,7 +668,7 @@ paths:
       - url: http://localhost:5000
   /mopping:
     get:
-      description: Auto generated using Swagger Inspector
+      description: Endpoint for starting mopping
       responses:
         '200':
           description: Auto generated using Swagger Inspector
@@ -678,7 +678,7 @@ paths:
       - url: http://localhost:5000
   /map:
     post:
-      description: Auto generated using Swagger Inspector
+      description: Endpoint for generating room layout
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -710,7 +710,7 @@ paths:
       servers:
         - url: http://localhost:5000
     get:
-      description: Auto generated using Swagger Inspector
+      description: Endpoint for getting room layout
       responses:
         '200':
           description: Auto generated using Swagger Inspector
@@ -720,7 +720,7 @@ paths:
       - url: http://localhost:5000
   /led/:
     get:
-      description: Auto generated using Swagger Inspector
+      description: Endpoint for basic data communication
       responses:
         '200':
           description: Auto generated using Swagger Inspector
@@ -760,7 +760,7 @@ paths:
       - url: http://localhost:5000
   /vacuum_settings:
     post:
-      description: Auto generated using Swagger Inspector
+      description: Endpoint for setting vacuum settings
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -805,7 +805,7 @@ paths:
       servers:
         - url: http://localhost:5000
     get:
-      description: Auto generated using Swagger Inspector
+      description: Endpoint for getting vacuum settings
       parameters:
         - name: id
           in: query
@@ -848,7 +848,7 @@ paths:
       - url: http://localhost:5000
   /auth/login:
     post:
-      description: Auto generated using Swagger Inspector
+      description: Endpoint for login
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -871,7 +871,7 @@ paths:
       - url: http://localhost:5000
   /air/:
     post:
-      description: Auto generated using Swagger Inspector
+      description: Endpoint for air quality
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -916,7 +916,7 @@ paths:
       - url: http://localhost:5000
   /auth/register:
     post:
-      description: Auto generated using Swagger Inspector
+      description: Endpoint for creating new user
       requestBody:
         content:
           application/x-www-form-urlencoded:
