@@ -45,8 +45,8 @@ def set_cleaning_schedule_api():
 @bp.route('/cleaning_schedule', methods=['GET'])
 @login_required
 def get_cleaning_schedule_api():
-    type = request.form['type']
-    date = request.form['date']
+    type = request.args.get('type')
+    date = request.args.get('date')
     result = get_cleaning_schedule(type, date)
     return jsonify(
         result

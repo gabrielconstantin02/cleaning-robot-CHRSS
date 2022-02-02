@@ -52,7 +52,7 @@ def set_cleaning_api():
 @bp.route('/cleaning', methods=['GET'])
 @login_required
 def get_cleaning_api():
-    id = request.form['id']
+    id = request.args.get('id')
     result = get_db().execute(
         'SELECT *'
         ' FROM cleaning'

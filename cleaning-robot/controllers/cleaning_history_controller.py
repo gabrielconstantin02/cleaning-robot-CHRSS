@@ -11,7 +11,7 @@ bp = Blueprint('cleaning_history', __name__)
 @bp.route('/cleaning_history', methods=['GET'])
 @login_required
 def get_cleaning_history_api():
-    type = request.form['type']
-    date = request.form['date']
+    type = request.args.get('type')
+    date = request.args.get('date')
     result = get_cleaning_history(type, date)
     return jsonify(result), 200

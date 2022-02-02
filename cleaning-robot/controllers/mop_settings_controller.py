@@ -46,6 +46,6 @@ def set_mop_settings_api():
 @bp.route('/mop_settings', methods=['GET'])
 @login_required
 def get_mop_settings_api():
-    id = request.form['id']
+    id = request.args.get('id')
     result = get_mop_settings(id)
     return jsonify(result), 200

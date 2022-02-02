@@ -63,6 +63,6 @@ def set_vacuum_settings_api():
 @bp.route('/vacuum_settings', methods=['GET'])
 @login_required
 def get_vacuum_settings_api():
-    id = request.form['id']
+    id = request.args.get('id')
     result = get_vacuum_settings(id)
     return jsonify(result), 200
