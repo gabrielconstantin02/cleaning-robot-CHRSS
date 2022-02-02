@@ -7,3 +7,4 @@ requests==2.27.1
 Werkzeug==2.0.2
 pytest==6.2.5
 paho-mqtt==1.6.1
+numpy=1.22.1

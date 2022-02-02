@@ -22,7 +22,7 @@ def test_set_vaccuming_settings(client):
 def test_get_vaccuming_settings(client):
     id = 1
     db_data = robot_service.get_vacuum_settings(id)
-    request = client.get("/vacuum_settings", data={"id": 1}, follow_redirects=True)
+    request = client.get("/vacuum_settings?id=1", data={}, follow_redirects=True)
     response = json.loads(request.data.decode())
 
     assert response["data"]["frequency"] == db_data["data"]["frequency"]

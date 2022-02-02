@@ -3,12 +3,10 @@ from unit_test.client import client
 from flask import jsonify
 import json
 import services.map_service as map_service
-import random
-
+from numpy import random
 
 map_name = "test"
-random.seed(13)
-new_map_name = map_name + str(random.randint(0, 100000))
+new_map_name = map_name + str(random.random() * 10000 // 10)
 
 def test_set_map(client):
     request = client.post("/map", data={"map_name": new_map_name}, follow_redirects=True)

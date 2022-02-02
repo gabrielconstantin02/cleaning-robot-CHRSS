@@ -5,7 +5,7 @@ import json
 import services.air_service as air_service
 import services.robot_service as robot_service
 
-frequency = 5
+frequency = 1
 
 
 def test_set_mop_settings(client):
@@ -19,18 +19,19 @@ def test_set_mop_settings(client):
 def test_get_mop_settings(client):
     id = 1
     db_data = robot_service.get_mop_settings(id)
-    request = client.get("/mop_settings", data={"id": id}, follow_redirects=True)
+    request = client.get(f"/mop_settings?id={id}", data={}, follow_redirects=True)
     response = json.loads(request.data.decode())
 
     assert response["data"]["frequency"] == db_data["data"]["frequency"]
 
 
 def test_set_mop_settings_real(client):
-    request = client.post("/mop_settings", data={"frequency": ""}, follow_redirects=True)
+    request = client.post("/mop_settings", data={}, follow_redirects=True)
     response = json.loads(request.data.decode())
 
-    air = air_service.get_air()[2]
+    air = air_service.get_air()['value']
     if air is None:
         air = air_service.get_air_realtime()
 
+    assert request.status_code == 200
     assert response["data"]["frequency"] == air // 50 + 1

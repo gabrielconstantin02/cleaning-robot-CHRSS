@@ -79,18 +79,18 @@ def set_battery_level(base=-1):
 @bp.route('/bin_level', methods=['POST'])
 def set_bin_level(base=-1):
     if base == -1:
-        resource_level = request.form['bin_level']
-        if not resource_level:
+        bin_level = request.form['bin_level']
+        if not bin_level:
             return jsonify({'status': 'Bin level is required.'}), 403
 
     else:
-        resource_level = 0
+        bin_level = 0
 
     db = get_db()
     db.execute(
         'INSERT INTO bin_level (value)'
         ' VALUES (?)',
-        (resource_level,)
+        (bin_level,)
     )
     db.commit()
     if base == -1:

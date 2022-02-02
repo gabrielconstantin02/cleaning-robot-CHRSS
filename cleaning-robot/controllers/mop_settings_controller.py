@@ -8,10 +8,10 @@ bp = Blueprint('mop_settings', __name__)
 @bp.route('/mop_settings', methods=['POST'])
 @login_required
 def set_mop_settings_api():
-    frequency = request.form['frequency']
+    frequency = request.form.get('frequency')
     error = None
 
-    air = get_air()
+    air = get_air_realtime()
 
     if not frequency:
         if air is None:
@@ -19,7 +19,7 @@ def set_mop_settings_api():
             return jsonify({
                 'status': 'No air quality record found; trying api...'
             }), 404
-        frequency = air['value'] // 50 + 1
+        frequency = air // 50 + 1
 
     db = get_db()
     db.execute(
