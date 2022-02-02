@@ -64,18 +64,31 @@ Next we need to use mosquitto_sub to connect to the mosquitto broker on the topi
 
 #### Unit tests:
 
-To run the unit tests open a terminal, cd into the project folder and run: ```python3 -m pytest cleaning-robot/unit_test/*```
+To run the unit tests open a terminal, cd into the project folder and run:   
+```console
+foo@project:~$ python3 -m pytest cleaning-robot/unit_test/*
+```
 
 #### Integration tests:
 
-To run the integration tests open a terminal, cd into the project folder and run: ```python3 -m pytest cleaning-robot/integration_test/*```
+To run the integration tests open a terminal, cd into the project folder and run:  
+```console
+foo@project:~$ python3 -m pytest cleaning-robot/integration_test/*
+```
 
 #### Tests coverage
-To see tests coverage, use
-```python3 -m coverage run -m pytest cleaning-robot/unit_test/*``` or ```python3 -m coverage run -m pytest cleaning-robot/integration_test/*``` and to see the report use
-```python3 -m coverage report```
-
-
+To see tests coverage, use  
+```console
+foo@project:~$ python3 -m coverage run -m pytest cleaning-robot/unit_test/*
+```  
+or  
+```console
+foo@project:~$ python3 -m coverage run -m pytest cleaning-robot/integration_test/*
+```  
+and to see the report use  
+```console
+foo@project:~$ python3 -m coverage report
+```  
 
 ## Backlog
 
