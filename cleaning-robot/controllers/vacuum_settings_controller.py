@@ -8,11 +8,11 @@ bp = Blueprint('vacuum_settings', __name__)
 @bp.route('/vacuum_settings', methods=['POST'])
 @login_required
 def set_vacuum_settings_api():
-    frequency = request.form['frequency']
-    power = request.form['power']
+    frequency = request.form.get('frequency')
+    power = request.form.get('power')
     error = None
 
-    air = get_air()
+    air = get_air_realtime()
 
     if not frequency and not power:
         if air is None:
@@ -20,7 +20,7 @@ def set_vacuum_settings_api():
             return jsonify({
                 'status': 'No air quality record found; trying api...'
             }), 404
-        frequency = air['value'] // 50 + 1
+        frequency = air // 50 + 1
         power = frequency * 20
     elif not frequency:
         if air is None:
@@ -28,14 +28,14 @@ def set_vacuum_settings_api():
             return jsonify({
                 'status': 'No air quality record found; trying api...'
             }), 404
-        frequency = air['value'] // 50 + 1
+        frequency = air // 50 + 1
     elif not power:
         if air is None:
             set_air_realtime()
             return jsonify({
                 'status': 'No air quality record found; trying api...'
             }), 404
-        power = (air['value'] // 50 + 1) * 20
+        power = (air // 50 + 1) * 20
 
     db = get_db()
     db.execute(

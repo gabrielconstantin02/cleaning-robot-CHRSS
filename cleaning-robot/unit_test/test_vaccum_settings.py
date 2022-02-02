@@ -6,8 +6,8 @@ import services.air_service as air_service
 import services.robot_service as robot_service
 
 
-frequency = 5
-power = 5
+frequency = 1
+power = 20
 
 
 def test_set_vaccuming_settings(client):
@@ -29,16 +29,13 @@ def test_get_vaccuming_settings(client):
     assert response["data"]["power"] == db_data["data"]["power"]
 
 
-# def test_set_vaccuming_settings_real(client):
-#     request = client.post("/vacuum_settings", data={"frequency": "", "power": ""}, follow_redirects=True)
-#     response = json.loads(request.data.decode())
-#
-#     air = air_service.get_air()[2]
-#     if air is None:
-#         air = air_service.get_air_realtime()
-#
-#     assert response["data"]["frequency"] == air // 50 + 1
-#     assert response["data"]["power"] == (air // 50 + 1) * 100
+def test_set_vaccuming_settings_real(client):
+    request = client.post("/vacuum_settings", data={}, follow_redirects=True)
+    response = json.loads(request.data.decode())
 
+    air = air_service.get_air()["value"]
+    if air is None:
+        air = air_service.get_air_realtime()
 
-
+    assert response["data"]["frequency"] == air // 50 + 1
+    assert response["data"]["power"] == (air // 50 + 1) * 20

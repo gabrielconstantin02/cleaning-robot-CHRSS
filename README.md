@@ -68,11 +68,11 @@ To run the unit tests open a terminal, cd into the project folder and run: ```py
 
 #### Integration tests:
 
-To run the integration tests open a terminal, cd into the project folder and run: ```python3 -m pytest cleaning-robot/intergation_test/*```
+To run the integration tests open a terminal, cd into the project folder and run: ```python3 -m pytest cleaning-robot/integration_test/*```
 
 #### Tests coverage
 To see tests coverage, use
-```python3 -m coverage run -m pytest cleaning-robot/unit_test/*``` or ```python3 -m coverage run -m pytest cleaning-robot/unit_test/*``` and to see the report use
+```python3 -m coverage run -m pytest cleaning-robot/unit_test/*``` or ```python3 -m coverage run -m pytest cleaning-robot/integration_test/*``` and to see the report use
 ```python3 -m coverage report```
 
 
