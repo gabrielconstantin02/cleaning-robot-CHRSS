@@ -1,4 +1,4 @@
-# Project Software Engineering course
+# CHRSS - cleaning-robot
 
 ## About
 
