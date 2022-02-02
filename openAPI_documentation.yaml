@@ -1,0 +1,939 @@
+openapi: 3.0.1
+info:
+  title: defaultTitle
+  description: defaultDescription
+  version: '0.1'
+servers:
+  - url: http://localhost:5000
+paths:
+  /cleaning:
+    post:
+      description: Auto generated using Swagger Inspector
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+            examples:
+              '0':
+                value: type=0&settings_v=5&settings_m=8
+              '1':
+                value: type=1&settings_v=5&settings_m=8
+      responses:
+        '200':
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      cleaning_v:
+                        type: integer
+                      id:
+                        type: integer
+                      type:
+                        type: integer
+                      cleaning_m:
+                        type: integer
+                      timestamp:
+                        type: string
+                  status:
+                    type: string
+              examples:
+                '0':
+                  value: |
+                    {
+                      "data": {
+                        "cleaning_m": 8, 
+                        "cleaning_v": 5, 
+                        "id": 6, 
+                        "timestamp": "Wed, 02 Feb 2022 08:10:31 GMT", 
+                        "type": 0
+                      }, 
+                      "status": "Cleaning successfully recorded/retrieved"
+                    }
+                '1':
+                  value: |
+                    {
+                      "data": {
+                        "cleaning_m": 8, 
+                        "cleaning_v": 5, 
+                        "id": 7, 
+                        "timestamp": "Wed, 02 Feb 2022 08:10:48 GMT", 
+                        "type": 1
+                      }, 
+                      "status": "Cleaning successfully recorded/retrieved"
+                    }
+      servers:
+        - url: http://localhost:5000
+    get:
+      description: Auto generated using Swagger Inspector
+      parameters:
+        - name: id
+          in: query
+          schema:
+            type: string
+          example: '7'
+      responses:
+        '200':
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      cleaning_v:
+                        type: integer
+                      id:
+                        type: integer
+                      type:
+                        type: integer
+                      cleaning_m:
+                        type: integer
+                      timestamp:
+                        type: string
+              examples:
+                '0':
+                  value: |
+                    {
+                      "data": {
+                        "cleaning_m": 8, 
+                        "cleaning_v": 5, 
+                        "id": 6, 
+                        "timestamp": "Wed, 02 Feb 2022 08:10:31 GMT", 
+                        "type": 0
+                      }
+                    }
+                '1':
+                  value: |
+                    {
+                      "data": {
+                        "cleaning_m": 8, 
+                        "cleaning_v": 5, 
+                        "id": 7, 
+                        "timestamp": "Wed, 02 Feb 2022 08:10:48 GMT", 
+                        "type": 1
+                      }
+                    }
+      servers:
+        - url: http://localhost:5000
+    servers:
+      - url: http://localhost:5000
+  /resource_level:
+    post:
+      description: Auto generated using Swagger Inspector
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+            examples:
+              '0':
+                value: resource_level=20
+      responses:
+        '200':
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      value:
+                        type: number
+                      timestamp:
+                        type: string
+                  status:
+                    type: string
+              examples:
+                '0':
+                  value: |
+                    {
+                      "data": {
+                        "id": 63, 
+                        "timestamp": "Wed, 02 Feb 2022 08:07:19 GMT", 
+                        "value": 20.0
+                      }, 
+                      "status": "Resource level successfully recorded"
+                    }
+      servers:
+        - url: http://localhost:5000
+    get:
+      description: Auto generated using Swagger Inspector
+      responses:
+        '200':
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      value:
+                        type: number
+                      timestamp:
+                        type: string
+                  status:
+                    type: string
+              examples:
+                '0':
+                  value: |
+                    {
+                      "data": {
+                        "id": 63, 
+                        "timestamp": "Wed, 02 Feb 2022 08:07:19 GMT", 
+                        "value": 20.0
+                      }, 
+                      "status": "Successfully got resource level"
+                    }
+      servers:
+        - url: http://localhost:5000
+    servers:
+      - url: http://localhost:5000
+  /cleaning_history:
+    get:
+      description: Auto generated using Swagger Inspector
+      parameters:
+        - name: date
+          in: query
+          schema:
+            type: string
+          example: 02-02-2022
+        - name: type
+          in: query
+          schema:
+            type: string
+          example: '0'
+      responses:
+        '200':
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      date:
+                        type: string
+                      elapsed_time:
+                        type: number
+                      id:
+                        type: integer
+                      type:
+                        type: integer
+                      timestamp:
+                        type: string
+              examples:
+                '0':
+                  value: |
+                    {
+                      "data": {
+                        "date": "02-02-2022", 
+                        "elapsed_time": 0.02805469200393418, 
+                        "id": 8, 
+                        "timestamp": "Wed, 02 Feb 2022 08:12:41 GMT", 
+                        "type": 0
+                      }
+                    }
+      servers:
+        - url: http://localhost:5000
+    servers:
+      - url: http://localhost:5000
+  /mop_settings:
+    post:
+      description: Auto generated using Swagger Inspector
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+            examples:
+              '0':
+                value: frequency=50
+      responses:
+        '200':
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      frequency:
+                        type: integer
+                      timestamp:
+                        type: string
+                  status:
+                    type: string
+              examples:
+                '0':
+                  value: |
+                    {
+                      "data": {
+                        "frequency": 50, 
+                        "id": 8, 
+                        "timestamp": "Wed, 02 Feb 2022 07:49:43 GMT"
+                      }, 
+                      "status": "Mop setting successfully recorded"
+                    }
+      servers:
+        - url: http://localhost:5000
+    get:
+      description: Auto generated using Swagger Inspector
+      parameters:
+        - name: id
+          in: query
+          schema:
+            type: string
+          example: '8'
+      responses:
+        '200':
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      frequency:
+                        type: integer
+                      timestamp:
+                        type: string
+              examples:
+                '0':
+                  value: |
+                    {
+                      "data": {
+                        "frequency": 50, 
+                        "id": 8, 
+                        "timestamp": "Wed, 02 Feb 2022 07:49:43 GMT"
+                      }
+                    }
+      servers:
+        - url: http://localhost:5000
+    servers:
+      - url: http://localhost:5000
+  /bin_level:
+    post:
+      description: Auto generated using Swagger Inspector
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+            examples:
+              '0':
+                value: bin_level=40
+      responses:
+        '200':
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      value:
+                        type: number
+                      timestamp:
+                        type: string
+                  status:
+                    type: string
+              examples:
+                '0':
+                  value: |
+                    {
+                      "data": {
+                        "id": 6, 
+                        "timestamp": "Wed, 02 Feb 2022 08:08:31 GMT", 
+                        "value": 40.0
+                      }, 
+                      "status": "Bin level successfully recorded"
+                    }
+      servers:
+        - url: http://localhost:5000
+    get:
+      description: Auto generated using Swagger Inspector
+      responses:
+        '200':
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      value:
+                        type: number
+                      timestamp:
+                        type: string
+                  status:
+                    type: string
+              examples:
+                '0':
+                  value: |
+                    {
+                      "data": {
+                        "id": 6, 
+                        "timestamp": "Wed, 02 Feb 2022 08:08:31 GMT", 
+                        "value": 40.0
+                      }, 
+                      "status": "Successfully got bin level"
+                    }
+      servers:
+        - url: http://localhost:5000
+    servers:
+      - url: http://localhost:5000
+  /battery_level:
+    post:
+      description: Auto generated using Swagger Inspector
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+            examples:
+              '0':
+                value: battery_level=80
+      responses:
+        '200':
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      value:
+                        type: number
+                      timestamp:
+                        type: string
+                  status:
+                    type: string
+              examples:
+                '0':
+                  value: |
+                    {
+                      "data": {
+                        "id": 451, 
+                        "timestamp": "Wed, 02 Feb 2022 08:07:33 GMT", 
+                        "value": 80.0
+                      }, 
+                      "status": "Battery level successfully recorded"
+                    }
+      servers:
+        - url: http://localhost:5000
+    get:
+      description: Auto generated using Swagger Inspector
+      responses:
+        '200':
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      value:
+                        type: number
+                      timestamp:
+                        type: string
+                  status:
+                    type: string
+              examples:
+                '0':
+                  value: |
+                    {
+                      "data": {
+                        "id": 451, 
+                        "timestamp": "Wed, 02 Feb 2022 08:07:33 GMT", 
+                        "value": 80.0
+                      }, 
+                      "status": "Successfully got battery level"
+                    }
+      servers:
+        - url: http://localhost:5000
+    servers:
+      - url: http://localhost:5000
+  /cleaning_schedule:
+    post:
+      description: Auto generated using Swagger Inspector
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+            examples:
+              '0':
+                value: type=1&date=2022-03-03 15:59:46
+      responses:
+        '200':
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      date:
+                        type: string
+                      type:
+                        type: integer
+                      timestamp:
+                        type: string
+                  status:
+                    type: string
+              examples:
+                '0':
+                  value: |
+                    {
+                      "data": {
+                        "date": "Thu, 03 Mar 2022 15:59:46 GMT", 
+                        "timestamp": "Wed, 02 Feb 2022 08:28:02 GMT", 
+                        "type": 1
+                      }, 
+                      "status": "Cleaning schedule successfully recorded"
+                    }
+      servers:
+        - url: http://localhost:5000
+    get:
+      description: Auto generated using Swagger Inspector
+      parameters:
+        - name: date
+          in: query
+          schema:
+            type: string
+          example: '2022-03-03 15:59:46'
+        - name: type
+          in: query
+          schema:
+            type: string
+          example: '1'
+      responses:
+        '200':
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      date:
+                        type: string
+                      type:
+                        type: integer
+                      timestamp:
+                        type: string
+              examples:
+                '0':
+                  value: |
+                    {
+                      "data": {
+                        "date": "Thu, 03 Mar 2022 15:59:46 GMT", 
+                        "timestamp": "Wed, 02 Feb 2022 08:28:02 GMT", 
+                        "type": 1
+                      }
+                    }
+      servers:
+        - url: http://localhost:5000
+    servers:
+      - url: http://localhost:5000
+  /vacuuming:
+    get:
+      description: Auto generated using Swagger Inspector
+      responses:
+        '200':
+          description: Auto generated using Swagger Inspector
+      servers:
+        - url: http://localhost:5000
+    servers:
+      - url: http://localhost:5000
+  /bin/:
+    get:
+      description: Auto generated using Swagger Inspector
+      responses:
+        '200':
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      value:
+                        type: number
+                      timestamp:
+                        type: string
+                  status:
+                    type: string
+              examples:
+                '0':
+                  value: |
+                    {
+                      "data": {
+                        "id": 7, 
+                        "timestamp": "Wed, 02 Feb 2022 08:12:41 GMT", 
+                        "value": 0.0
+                      }, 
+                      "status": "Automatic empty not required. Bin is not full!"
+                    }
+      servers:
+        - url: http://localhost:5000
+    servers:
+      - url: http://localhost:5000
+  /air/real:
+    get:
+      description: Auto generated using Swagger Inspector
+      responses:
+        '200':
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      last_updated:
+                        type: string
+                      air_quality:
+                        type: number
+                      id:
+                        type: integer
+                  status:
+                    type: string
+              examples:
+                '0':
+                  value: |
+                    {
+                      "data": {
+                        "air_quality": 19.78, 
+                        "id": 9, 
+                        "last_updated": "Wed, 02 Feb 2022 08:05:39 GMT"
+                      }, 
+                      "status": "Realtime air quality successfully retrieved."
+                    }
+      servers:
+        - url: http://localhost:5000
+    servers:
+      - url: http://localhost:5000
+  /mopping:
+    get:
+      description: Auto generated using Swagger Inspector
+      responses:
+        '200':
+          description: Auto generated using Swagger Inspector
+      servers:
+        - url: http://localhost:5000
+    servers:
+      - url: http://localhost:5000
+  /map:
+    post:
+      description: Auto generated using Swagger Inspector
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+            examples:
+              '0':
+                value: map_name=map_testing
+              '1':
+                value: map_name=map_testing
+      responses:
+        '200':
+          description: Auto generated using Swagger Inspector
+        '405':
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+              examples:
+                '0':
+                  value: |
+                    {
+                      "status": "The mapping already exists"
+                    }
+      servers:
+        - url: http://localhost:5000
+    get:
+      description: Auto generated using Swagger Inspector
+      responses:
+        '200':
+          description: Auto generated using Swagger Inspector
+      servers:
+        - url: http://localhost:5000
+    servers:
+      - url: http://localhost:5000
+  /led/:
+    get:
+      description: Auto generated using Swagger Inspector
+      responses:
+        '200':
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      battery_level:
+                        type: number
+                      bin_level:
+                        type: number
+                      air_quality:
+                        type: number
+                      resource_level:
+                        type: number
+                      frequency:
+                        type: integer
+              examples:
+                '0':
+                  value: |
+                    {
+                      "data": {
+                        "air_quality": 19.78, 
+                        "battery_level": 100.0, 
+                        "bin_level": 0.0, 
+                        "frequency": 50, 
+                        "resource_level": 7.061102631473795
+                      }
+                    }
+      servers:
+        - url: http://localhost:5000
+    servers:
+      - url: http://localhost:5000
+  /vacuum_settings:
+    post:
+      description: Auto generated using Swagger Inspector
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+            examples:
+              '0':
+                value: frequency=50&power=20
+      responses:
+        '200':
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      power:
+                        type: number
+                      frequency:
+                        type: integer
+                      timestamp:
+                        type: string
+                  status:
+                    type: string
+              examples:
+                '0':
+                  value: |
+                    {
+                      "data": {
+                        "frequency": 50, 
+                        "id": 5, 
+                        "power": 20.0, 
+                        "timestamp": "Wed, 02 Feb 2022 07:59:04 GMT"
+                      }, 
+                      "status": "Vacuum setting successfully recorded"
+                    }
+      servers:
+        - url: http://localhost:5000
+    get:
+      description: Auto generated using Swagger Inspector
+      parameters:
+        - name: id
+          in: query
+          schema:
+            type: string
+          example: '5'
+      responses:
+        '200':
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      power:
+                        type: number
+                      frequency:
+                        type: integer
+                      timestamp:
+                        type: string
+              examples:
+                '0':
+                  value: |
+                    {
+                      "data": {
+                        "frequency": 50, 
+                        "id": 5, 
+                        "power": 20.0, 
+                        "timestamp": "Wed, 02 Feb 2022 07:59:04 GMT"
+                      }
+                    }
+      servers:
+        - url: http://localhost:5000
+    servers:
+      - url: http://localhost:5000
+  /auth/login:
+    post:
+      description: Auto generated using Swagger Inspector
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+            examples:
+              '0':
+                value: username=tester&password=tester
+      responses:
+        '200':
+          description: Auto generated using Swagger Inspector
+          content:
+            text/html; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+      servers:
+        - url: http://localhost:5000
+    servers:
+      - url: http://localhost:5000
+  /air/:
+    post:
+      description: Auto generated using Swagger Inspector
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+            examples:
+              '0':
+                value: air_quality=5
+      responses:
+        '200':
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      last_updated:
+                        type: string
+                      air_quality:
+                        type: number
+                      id:
+                        type: integer
+                  status:
+                    type: string
+              examples:
+                '0':
+                  value: |
+                    {
+                      "data": {
+                        "air_quality": 5.0, 
+                        "id": 8, 
+                        "last_updated": "Wed, 02 Feb 2022 08:05:15 GMT"
+                      }, 
+                      "status": "Air quality successfully recorded."
+                    }
+      servers:
+        - url: http://localhost:5000
+    servers:
+      - url: http://localhost:5000
+  /auth/register:
+    post:
+      description: Auto generated using Swagger Inspector
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+            examples:
+              '0':
+                value: username=tester&password=tester
+      responses:
+        '200':
+          description: Auto generated using Swagger Inspector
+          content:
+            text/html; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+      servers:
+        - url: http://localhost:5000
+    servers:
+      - url: http://localhost:5000
