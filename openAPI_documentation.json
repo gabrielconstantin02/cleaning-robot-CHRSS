@@ -1,9 +1,9 @@
 {
   "openapi" : "3.0.1",
   "info" : {
-    "title" : "defaultTitle",
-    "description" : "defaultDescription",
-    "version" : "0.1"
+    "title" : "Cleaning Robot CHRSS REST API documentation",
+    "description" : "openAPI REST API information",
+    "version" : "1.0"
   },
   "servers" : [ {
     "url" : "http://localhost:5000"
